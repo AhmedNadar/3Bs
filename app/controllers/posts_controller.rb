@@ -1,10 +1,9 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_post_redirect , only: [:show]
+  before_filter :http_basic_authenticate_with, only: [:admin, :new, :edit, :update, :destroy]
 
-  http_basic_authenticate_with name: ENV["BLOG_USERNAME"],
-                               password: ENV["BLOG_PASSWORD"],
-                               except: [:show]
+
   # GET /posts
   # GET /posts.json
   def index
@@ -92,6 +91,16 @@ class PostsController < ApplicationController
       # a 301 redirect that uses the current friendly id.
       if request.path != post_path(@post)
         redirect_to @post, status: :moved_permanently
+      end
+    end
+  protected
+    def http_basic_authenticate_with
+      authenticate_or_request_with_http_basic do |name, password|
+        if(name == ENV["BLOG_USERNAME"] && password == ENV["BLOG_PASSWORD"])
+          true
+        else
+          redirect_to notfound_path
+        end
       end
     end
 end
