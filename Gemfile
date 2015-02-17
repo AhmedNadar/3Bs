@@ -44,5 +44,7 @@ group :development, :test do
 
 
   gem 'friendly_id', '~> 5.1.0'
+  gem 'pygments.rb'
+  gem 'redcarpet'
 end
 
