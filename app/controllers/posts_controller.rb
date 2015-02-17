@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_post_redirect , only: [:show]
-  before_filter :http_basic_authenticate_with, only: [:admin, :new, :edit, :update, :destroy]
+  before_action :http_basic_authenticate_with, only: [:admin, :new, :edit, :update, :destroy]
 
 
   # GET /posts

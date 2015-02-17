@@ -1,6 +1,8 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Posts</h1>
+<h1>All Listing Posts</h1>
+
+<h4>Welcome <%= ENV["BLOG_USERNAME"] %> to Admin page.</h4>
 <%= will_paginate @posts %>
 <table>
   <thead>
