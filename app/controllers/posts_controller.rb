@@ -5,16 +5,17 @@ class PostsController < ApplicationController
   http_basic_authenticate_with name: ENV["BLOG_USERNAME"],
                                password: ENV["BLOG_PASSWORD"],
                                except: [:show]
-
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    @posts = Post.paginate(page: params[:page], per_page: 2)
+    @title = Post.all
   end
 
   # GET /posts for Admin
   def admin
-    @posts = Post.all
+    @posts = Post.paginate(page: params[:page], per_page: 3)
+    @title = Post.all
   end
 
   # GET /posts/1

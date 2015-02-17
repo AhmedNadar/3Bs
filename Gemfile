@@ -47,5 +47,6 @@ group :development, :test do
   gem 'pygments.rb'
   gem 'redcarpet'
   gem 'figaro'
+  gem 'will_paginate', '~> 3.0.6'
 end
 
