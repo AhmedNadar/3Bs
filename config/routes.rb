@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
- resources :posts
  root 'posts#index'
+ get '/posts/admin', controller: 'posts', action: 'admin'
+ resources :posts
 end

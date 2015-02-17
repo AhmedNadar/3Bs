@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
   before_action :set_post_redirect , only: [:show]
+
   http_basic_authenticate_with name: ENV["BLOG_USERNAME"],
                                password: ENV["BLOG_PASSWORD"],
                                except: [:show]
@@ -8,6 +9,11 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    @posts = Post.all
+  end
+
+  # GET /posts for Admin
+  def admin
     @posts = Post.all
   end
 
